@@ -1,8 +1,5 @@
 {
   "plugins": {
-    "postcss-import": {},
-    "postcss-url": {},
-    "tailwindcss/nesting": {},
-    "tailwindcss": {}
+    "@tailwindcss/postcss": {}
   }
 }
