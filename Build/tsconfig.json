@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "noImplicitThis": true
+  },
+  "include": [
+    "./Sources/**/*"
+, "Sources/ts/types.d.ts"  ]
+}

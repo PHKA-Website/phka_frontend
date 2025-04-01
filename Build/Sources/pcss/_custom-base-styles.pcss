@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+@layer base {
+    :root {
+        --color-primary: 120deg 50%;
+        --color-primary-25: var(--color-primary) 98%;
+        --color-primary-700: var(--color-primary) 30%;
+
+        --color-secondary: 0deg 0%;
+        --color-secondary-25: var(--color-secondary) 98%;
+        --color-secondary-50: var(--color-secondary) 95%;
+        --color-secondary-300: var(--color-secondary) 70%;
+        --color-secondary-700: var(--color-secondary) 30%;
+
+        --color-black: 0deg 0% 0%;
+        --color-white: 0deg 0% 100%;
+
+        --color-info: 200deg 100%;
+        --color-info-500: var(--color-info) 50%;
+        --color-info-700: var(--color-info) 30%;
+        
+        --color-danger: 10deg 50%;
+        --color-danger-500: var(--color-danger) 50%;
+        --color-danger-700: var(--color-danger) 30%;
+
+        --color-warning: 35deg 100%;
+        --color-warning-500: var(--color-warning) 50%;
+        --color-warning-700: var(--color-warning) 30%;
+
+        --color-success: 120deg 50%;
+        --color-success-500: var(--color-success) 50%;
+        --color-success-700: var(--color-success) 30%;
+
+        --color-notice: 0deg 0%;
+        --color-notice-500: var(--color-notice) 50%;
+        --color-notice-700: var(--color-notice) 30%;
+
+        @apply
+            text-[100%]
+            scroll-smooth
+            overflow-x-hidden	
+            overflow-y-scroll
+        ;
+    }
+
+    body {
+        @apply
+            text-base
+            md:text-lg
+            leading-relaxed
+            md:leading-relaxed
+            break-words
+            text-current
+            tracking-normal
+            underline-offset-2
+        ;
+    }
+
+    a {
+        @apply
+            underline
+        ;
+    }
+}
