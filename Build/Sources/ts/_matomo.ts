@@ -33,12 +33,12 @@ import Alpine from 'alpinejs'
     s.parentNode.insertBefore(g, s);
 
     document.addEventListener('alpine:initialized', () => {
-      if (Alpine.store('privacy')?.matomoConsent?.value) {
+      if (Alpine.store('privacy')?.settings['matomo']?.given()) {
         _paq.push(['setConsentGiven', false]);
       } else {
         _paq.push(['forgetConsentGiven']);
       }
-      if (Alpine.store('privacy')?.matomoCookieConsent?.value) {
+      if (Alpine.store('privacy')?.matomoCookie?.given()) {
         _paq.push(['setCookieConsentGiven']);
       } else {
         _paq.push(['forgetCookieConsentGiven']);

@@ -1,9 +1,13 @@
 @charset "UTF-8";
 
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+/* Using the folder "ts" as base source */
+@import "tailwindcss" source("../ts");
 
-@import "./_custom-base-styles.pcss";
-@import "./_custom-components.pcss";
-@import "./_custom-utilities.pcss";
+/* Add template paths of TYPO3 extensions using TailwindCSS to source */
+@source "../../../../phka_sitepackage/Resources/Private";
+
+/* Importing PostCSS files */
+@import "./_theme.pcss" layer(theme);
+@import "./_base-styles.pcss" layer(base);
+@import "./_components.pcss" layer(components);
+@import "./_utilities.pcss" layer(utilities);

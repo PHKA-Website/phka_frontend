@@ -1,56 +1,66 @@
 import type { Alpine, InterceptorObject } from "alpinejs"
-import type { privacyConfiguration } from '../_config'
-
-import { privacyConfigurations } from '../_config';
+import type { PrivacyConfiguration } from "../_config"
+import { privacyConfigurations } from '../_config'
 
 export interface StorePrivacy {
-  consent: privacySetting
-  settings: privacySetting[]
+  _settings: StorePrivacySetting[] | null
   init: () => void
   addAll: () => void
   removeAll: () => void
-  _initSetting: (arg1: privacyConfiguration) => privacySetting
+  confirm: () => void
+  addConsent: (id: string, force?: boolean) => void
+  removeConsent: (id: string, force?: boolean) => void
+  hasConsent: (id: string) => InterceptorObject<boolean> | boolean | null
 }
 
-export interface privacySetting {
+export interface StorePrivacySetting extends PrivacyConfiguration {
   value: InterceptorObject<boolean> | boolean
-  add: () => void
-  remove: () => void
-  toggle: () => void
-  given: () => InterceptorObject<boolean> | boolean
 }
 
 export default (Alpine: Alpine) => Alpine.store('privacy', {
-  consent: this._initSetting(),
-  settings: [],
+  _settings: null,
   init() {
-      privacyConfigurations.forEach({ id, requires } => this._initSetting);
+    privacyConfigurations
+      .concat([{ id: 'confirmed', requires: null}])
+      .forEach(({ id, requires }) => {
+        this._settings.push({
+          id,
+          requires,
+          value: Alpine.$persist(true).as(`privacy.settings.${id}`)
+        })
+      })
   },
   addAll() {
     privacyConfigurations.forEach(({ id }) => {
-      ;(this[id] as privacySetting).add()
+      this.addConsent(id, true)
     })
   },
   removeAll() {
     privacyConfigurations.forEach(({ id }) => {
-      ;(this[id] as privacySetting).remove()
+      this.removeConsent(id, true)
     })
   },
-  _initSetting({ id }) {
-    return {
-      value: Alpine.$persist(false).as(`privacy.settings.${id}`),
-      add() {
-        this.value = true
-      },
-      remove() {
-        this.value = false
-      },
-      toggle() {
-        return this.value ? this.remove() : this.add()
-      },
-      given() {
-        return this.value;
-      },
-    } as privacySetting
-  }
+  confirm() {
+    this.addConsent('confirmed', true)
+  },
+  addConsent(id, force = false) {
+    if (!this._settings.has(id)) return
+    if (
+      force ||
+      this._settings.get(id).requires === null ||
+      this.hasConsent(this._settings.get(id).requires) === true
+    ) {
+      this._settings.get(id).value = true
+    }
+  },
+  removeConsent(id, force = false) {
+    if (!this._settings.has(id)) return
+    this._settings.get(id).value = false
+    if (force) return
+    this._settings.values.
+  },
+  hasConsent(id = null) {
+    if (id === null || !this._settings.has(id)) return null
+    return this._settings.get(id).value.valueOf()
+  },
 } as StorePrivacy)

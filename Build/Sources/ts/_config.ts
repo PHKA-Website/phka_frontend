@@ -1,38 +1,35 @@
 // Privacy settings, add more if needed
 
-export interface privacyConfiguration {
-  id: String
-  requires: String[]
+export interface PrivacyConfiguration {
+  id: string
+  requires: string | null
 }
 
-export const privacyConfigurations: privacyConfiguration[] = [
+export const privacyConfigurations: PrivacyConfiguration[] = [
   {
-    id: 'matomoConsent',
-    requires: [],
+    id: 'matomo',
+    requires: null,
   }, {
-    id: 'matomoCookieConsent',
-    requires: [
-      'matomoConsent',
-    ],
+    id: 'matomoCookie',
+    requires: 'matomo',
   }, {
-    id: 'vimeoConsent',
-    requires: [],
+    id: 'matomoUsergroupTracking',
+    requires: 'matomo',
   }, {
-    id: 'vimeoCookieConsent',
-    requires: [
-      'vimeoConsent',
-    ],
+    id: 'vimeo',
+    requires: null,
   }, {
-    id: 'youtubeConsent',
-    requires: [],
+    id: 'vimeoCookie',
+    requires: 'vimeo',
   }, {
-    id: 'youtubeCookieConsent',
-    requires: [
-      'youtubeConsent',
-    ],
+    id: 'youtube',
+    requires: null,
   }, {
-    id: 'biteConsent',
-    requires: [],
+    id: 'youtubeCookie',
+    requires: 'youtube',
+  }, {
+    id: 'bite',
+    requires: null,
   },
 ]
 
