@@ -1,0 +1,21 @@
+/* Importing TailwindCSS removing default source */
+@import "tailwindcss" source(none);
+
+/* Add TailwindCSS plugins */
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/forms";
+
+/* Add ts path to source */
+@source "../ts";
+
+/* Add template paths of TYPO3 extensions using TailwindCSS to source */
+@source "../../../../phka_sitepackage/Resources/Private";
+
+/* Whitelisting utilities and variants*/
+/* @source inline(""); */
+
+/* Importing PostCSS files */
+@import "./_theme.pcss" layer(theme);
+@import "./_base-styles.pcss" layer(base);
+@import "./_components.pcss" layer(components);
+@import "./_utilities.pcss" layer(utilities);

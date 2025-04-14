@@ -1,0 +1,35 @@
+{
+	"name": "phka/frontend",
+	"description": "PHKA TYPO3 frontend package",
+	"keywords": [
+		"TYPO3",
+		"extension"
+	],
+	"homepage": "https://www.ph-karlsruhe.de",
+	"type": "typo3-cms-extension",
+	"license": "GPL-2.0-or-later",
+	"authors": [
+		{
+			"name": "Oliver Schmidt",
+			"email": "webdev@ph-karlsruhe.de",
+			"role": "Developer",
+			"homepage": "https://ph-karlsruhe.de"
+		}
+	],
+	"require": {
+		"typo3/cms-core": "^13.4"
+	},
+	"require-dev": {
+        "typo3/coding-standards": "^0.8"
+    },
+	"autoload": {
+		"psr-4": {
+			"PHKA\\Frontend\\": "Classes/"
+		}
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "phka_frontend"
+		}
+	}
+}

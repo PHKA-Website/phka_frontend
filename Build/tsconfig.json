@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "noImplicitThis": true
+  },
+  "include": [
+    "./Sources/ts/types.d.ts",
+    "./Sources/ts/bundle.ts"
+  ]
+}

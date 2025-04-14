@@ -1,0 +1,107 @@
+{
+  "name": "phka-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "targets": {
+    "js-web": {
+      "context": "browser",
+      "isLibrary": false,
+      "source": "./Sources/ts/bundle.ts",
+      "distDir": "../Resources/Public/JavaScript/",
+      "optimize": true,
+      "sourceMap": true,
+      "scopeHoist": false
+    },
+    "css:web": {
+      "context": "browser",
+      "isLibrary": false,
+      "source": "./Sources/pcss/bundle.pcss",
+      "distDir": "../Resources/Public/Css/",
+      "optimize": true,
+      "sourceMap": true,
+      "scopeHoist": false
+    },
+    "css-fonts": {
+      "context": "browser",
+      "isLibrary": false,
+      "source": [
+        "./Sources/pcss/fonts/bundle.pcss"
+      ],
+      "distDir": "../Resources/Public/Fonts",
+      "optimize": true,
+      "sourceMap": true,
+      "scopeHoist": false
+    },
+    "css-rte": {
+      "context": "browser",
+      "isLibrary": false,
+      "source": [
+        "./Sources/pcss/rte/custom.pcss"
+      ],
+      "distDir": "../Resources/Public/Css/Rte",
+      "optimize": true,
+      "sourceMap": true,
+      "scopeHoist": false
+    }
+  },
+  "browserslist": "defaults",
+  "scripts": {
+    "build": "npm-run-all -s clean build:icons copy:icons build:parcel",
+    "build:css": "parcel build --target css-web --target css-rte --target css-fonts",
+    "build:css:fonts": "parcel build --target css-fonts",
+    "build:css:rte": "parcel build --target css-rte",
+    "build:css:web": "parcel build --target css-web",
+    "build:icons": "cd ./Packages/Iconfont && npm run main",
+    "copy:icons": "cpy ./Packages/Iconfont/icons-copied/*.svg ../Resources/Public/Icons/Frontend", 
+    "build:js": "parcel build --target js-web",
+    "build:js:web": "parcel build --target js-web",
+    "build:parcel": "parcel build",
+    "check": "tsc --noEmit",
+    "clean": "del-cli -f ./.parcel-cache ../Resources/Public/Css/ ../Resources/Public/Fonts/ ../Resources/Public/JavaScript/ ../Resources/Public/Icons/Frontend/",
+    "lint": "eslint ./Sources/ ./Packages/",
+    "postinstall": "cd ./Packages/Iconfont && npm install",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "npm-run-all -p watch:css watch:js",
+    "watch:css": "npm-run-all -p watch:css:web watch:css:rte",
+    "watch:css:rte": "tailwindcss -i ./Sources/pcss/rte/custom.pcss -o ../Resources/Public/Css/Rte/custom.css --watch",
+    "watch:css:web": "tailwindcss -i ./Sources/pcss/bundle.pcss -o ../Resources/Public/Css/bundle.css --watch",
+    "watch:js": "npm-run-all -p watch:js:web",
+    "watch:js:web": "parcel watch --target js-web --no-cache --no-hmr"
+  },
+  "author": "Oliver Schmidt",
+  "license": "GPL-2.0-or-later",
+  "description": "",
+  "devDependencies": {
+    "@alpinejs/collapse": "^3.14.9",
+    "@alpinejs/focus": "^3.14.9",
+    "@alpinejs/persist": "^3.14.9",
+    "@alpinejs/ui": "^3.14.9",
+    "@eslint/js": "^9.23.0",
+    "@fontsource/source-code-pro": "^5.2.5",
+    "@fontsource/source-sans-pro": "^5.2.5",
+    "@fontsource/source-serif-pro": "^5.2.5",
+    "@parcel/types": "^2.14.4",
+    "@tailwindcss/cli": "^4.1.3",
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/postcss": "^4.0.17",
+    "@tailwindcss/typography": "^0.5.16",
+    "@types/alpinejs": "^3.13.11",
+    "@types/alpinejs__collapse": "^3.13.4",
+    "@types/alpinejs__focus": "^3.13.4",
+    "@types/alpinejs__persist": "^3.13.4",
+    "@types/node": "^22.7.4",
+    "alpinejs": "^3.14.9",
+    "cpy-cli": "^5.0.0",
+    "del-cli": "^6.0.0",
+    "eslint": "^9.23.0",
+    "globals": "^16.0.0",
+    "lodash-es": "^4.17.21",
+    "nodemon": "^3.1.9",
+    "npm-run-all": "^4.1.5",
+    "parcel": "^2.14.4",
+    "postcss": "^8.5.3",
+    "svgo": "^3.3.2",
+    "tailwindcss": "^4.0.17",
+    "typescript-eslint": "^8.29.0"
+  }
+}

@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+@font-face {
+{{fontFamily}}
+}
+
+{% if nameAsUnicode %}.{{prefix}}{% else %}[class^="{{prefix}}-"], [class*=" {{prefix}}-"]{% endif %} {
+  font-family: '{{fontname}}' !important;
+  {{fontSize}}
+  font-style: normal;
+}
+
+{% if not nameAsUnicode %}
+{{cssString}}
+{% endif %}
