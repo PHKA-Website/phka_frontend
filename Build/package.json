@@ -36,9 +36,9 @@
       "context": "browser",
       "isLibrary": false,
       "source": [
-        "./Sources/pcss/rte/custom.pcss"
+        "./Sources/pcss/rte/rte.pcss"
       ],
-      "distDir": "../Resources/Public/Css/Rte",
+      "distDir": "../Resources/Public/Css/",
       "optimize": true,
       "sourceMap": true,
       "scopeHoist": false
