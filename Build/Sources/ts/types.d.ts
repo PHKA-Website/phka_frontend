@@ -1,4 +1,4 @@
-import { Alpine } from 'alpinejs';
+import type { Alpine } from 'alpinejs';
 import type { StorePrivacy } from './stores/privacy'
 
 // Global declaration

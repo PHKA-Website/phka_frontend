@@ -1,8 +1,7 @@
 import type { EnvMap } from '@parcel/types'
 
-import * as Alpine from 'alpinejs'
+import Alpine from 'alpinejs'
 
-import pluginUi from '@alpinejs/ui'
 import pluginCollapse from '@alpinejs/collapse'
 import pluginFocus from '@alpinejs/focus'
 import pluginPersist from '@alpinejs/persist'
@@ -20,7 +19,6 @@ if (env.NODE_ENV === 'development') {
   window.Alpine = Alpine
 }
 
-Alpine.plugin(pluginUi)
 Alpine.plugin(pluginCollapse)
 Alpine.plugin(pluginFocus)
 Alpine.plugin(pluginPersist)
